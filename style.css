@@ -164,19 +164,25 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
+    align-items: stretch; /* Ye saare cards ki line height barabar rakhega */
 }
 
 /* Update Card Styles (Glassmorphism + Neon Glow) */
 .card {
-    background: rgba(15, 15, 22, 0.45); /* More transparent for glass look */
-    border: 1px solid rgba(255, 30, 70, 0.1); /* Subtle neon red border */
+    background: rgba(15, 15, 22, 0.45);
+    border: 1px solid rgba(255, 30, 70, 0.1);
     border-radius: 20px;
     overflow: hidden;
-    backdrop-filter: blur(25px); /* Strong glass blur */
+    backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Strong initial shadow */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     position: relative;
+    
+    /* Ye teen lines layout ko automatic strict straight rakhengi */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
 }
 
 /* Update Hover Effect (Zoom-in & Red Neon Glow) */
@@ -212,7 +218,7 @@ body {
 .video-container {
     width: 100%;
     height: 400px;
-    background-color: #020203; /* Deep black video background */
+    background-color: #020203;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -225,17 +231,30 @@ body {
     padding: 24px;
     background-color: rgba(15, 15, 22, 0.8);
     border-top: 1px solid rgba(255, 255, 255, 0.03);
+    flex-grow: 1; /* bache hue saare cards ka text container size match karega */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.card-info h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: #f3f4f6;
+.card-info {
+    padding: 24px;
+    background-color: rgba(15, 15, 22, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    flex-grow: 1; /* bache hue saare cards ka text container size match karega */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.card-info p {
-    color: #9ca3af;
-    font-size: 14px;
+.card-info {
+    padding: 24px;
+    background-color: rgba(15, 15, 22, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    flex-grow: 1; /* bache hue saare cards ka text container size match karega */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Dynamic Scroll Animations */
