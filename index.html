@@ -9,6 +9,8 @@
 </head>
 <body>
 
+    <canvas id="bg-canvas"></canvas>
+
     <nav class="navbar">
         <div class="logo">SATYAM</div>
         <ul class="nav-links">
@@ -68,7 +70,7 @@
 
             <div class="card fade-in">
                 <div class="video-container">
-                    <video src="timeline web.mp4" loop muted playsinline></video>
+                    <video src="timeline va final.mp4" loop muted playsinline></video>
                     <div class="play-hint">Hover to preview 🔊</div>
                 </div>
                 <div class="card-info">
@@ -84,45 +86,146 @@
         <h2>Let's build something epic together.</h2>
         <p>Bettiah, Bihar | Open for Freelance Work</p>
         
-        <p style="margin-bottom: 20px; font-weight: 500; color: #6366f1;">
-            📞 Call/WhatsApp: +91 8709973773
+        <p style="margin-bottom: 20px; font-weight: 500; color: #ff1e46;">
+            📞 Call/WhatsApp: +91 XXXXXXXXXX
         </p>
 
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/YOUR_USERNAME" target="_blank">LinkedIn</a>
-            <a href="https://www.instagram.com/satyam_shrivastwa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
-            <a href="satyamshrivastawa36@gmail.com">Email Me</a>
-            <a href="https://wa.me/918709973773?text=Hi%20Satyam,%20I%20want%20to%20hire%20you%20for%20video%20editing" target="_blank">WhatsApp</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="mailto:your-email@gmail.com">Email Me</a>
+            <a href="#" target="_blank">WhatsApp</a>
         </div>
         <p class="copyright">© 2026 Satyam. All rights reserved.</p>
     </footer>
 
     <script>
-        // 1. Hover to Play logic
+        // 1. DYNAMIC MOVING BACKGROUND (Aesthetic Dark Red Particles)
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+        const numberOfParticles = 60; // Smooth frame rates ke liye balanced number
+
+        // Mouse Tracker for interactive motion
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 150
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.4 - 0.2; // Slow aesthetic floating
+                this.speedY = Math.random() * 0.4 - 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Bounce off edges
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+
+                // Interaction with mouse
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    if (mouse.x > this.x && this.x > 10) this.x -= 1;
+                    if (mouse.x < this.x && this.x < canvas.width - 10) this.x += 1;
+                    if (mouse.y > this.y && this.y > 10) this.y -= 1;
+                    if (mouse.y < this.y && this.y < canvas.height - 10) this.y += 1;
+                }
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255, 30, 70, 0.4)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let dx = particlesArray[a].x - particlesArray[b].x;
+                    let dy = particlesArray[a].y - particlesArray[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 120) {
+                        opacityValue = 1 - (distance/120);
+                        ctx.strokeStyle = `rgba(255, 30, 70, ${opacityValue * 0.15})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            connect();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particlesArray = [];
+            init();
+        });
+
+        init();
+        animate();
+
+
+        // 2. HOVER TO PLAY LOGIC
         const videoContainers = document.querySelectorAll('.video-container');
-        
         videoContainers.forEach(container => {
             const video = container.querySelector('video');
             const hint = container.querySelector('.play-hint');
             
-            // Mouse andar aane par play karo
             container.addEventListener('mouseenter', () => {
-                video.play().catch(error => console.log("Auto-play prevented"));
+                video.play().catch(err => console.log("Auto-play stopped"));
                 hint.style.opacity = '0';
             });
             
-            // Mouse baahar jaane par pause aur reset karo
             container.addEventListener('mouseleave', () => {
                 video.pause();
-                video.currentTime = 0; // Shuruat se reset
+                video.currentTime = 0;
                 hint.style.opacity = '1';
             });
 
-            // Agar user click kare toh unmute/mute toggle ho jaye ya bada player khule
             container.addEventListener('click', () => {
                 if(video.muted) {
                     video.muted = false;
-                    video.controls = true; // Full controls de do click par
+                    video.controls = true;
                     hint.style.display = 'none';
                 } else {
                     video.muted = true;
@@ -131,9 +234,8 @@
             });
         });
 
-        // 2. Scroll Reveal Animation Logic
+        // 3. SCROLL REVEAL ANIMATION
         const fadeElements = document.querySelectorAll('.fade-in');
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -141,9 +243,7 @@
                 }
             });
         }, { threshold: 0.1 });
-
         fadeElements.forEach(el => observer.observe(el));
     </script>
-
 </body>
 </html>
