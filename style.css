@@ -14,14 +14,14 @@ body {
     position: relative;
 }
 
-/* BACKGROUND CANVAS (Dynamic Motion) */
+/* BACKGROUND CANVAS (Dynamic Particles) */
 #bg-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* Sabse peeche rahega */
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -75,7 +75,7 @@ body {
 
 /* Hero Section */
 .hero {
-    min-height: 80vh;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     padding: 0 8%;
@@ -96,7 +96,7 @@ body {
 }
 
 .hero h1 {
-    font-size: 56px;
+    font-size: 54px;
     margin-top: 25px;
     line-height: 1.15;
     font-weight: 700;
@@ -147,7 +147,7 @@ body {
     border-color: #ff1e46;
 }
 
-/* Work Section */
+/* Work Section Grid FIXED */
 .work-section {
     padding: 80px 8%;
 }
@@ -162,12 +162,12 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    align-items: stretch; /* Ye saare cards ki line height barabar rakhega */
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 35px;
+    align-items: stretch; /* Forces equal heights on row level */
 }
 
-/* Update Card Styles (Glassmorphism + Neon Glow) */
+/* Card Morphism & Geometry Matrix */
 .card {
     background: rgba(15, 15, 22, 0.45);
     border: 1px solid rgba(255, 30, 70, 0.1);
@@ -176,48 +176,23 @@ body {
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     position: relative;
-    
-    /* Ye teen lines layout ko automatic strict straight rakhengi */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
-/* Update Hover Effect (Zoom-in & Red Neon Glow) */
 .card:hover {
-    transform: translateY(-8px) scale(1.02); /* Pop-up and slight zoom */
-    border-color: rgba(255, 30, 70, 0.6); /* Bright neon border on hover */
-    box-shadow: 0 15px 40px rgba(255, 30, 70, 0.25); /* Crimson red glow on hover */
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(255, 30, 70, 0.5);
+    box-shadow: 0 15px 40px rgba(255, 30, 70, 0.25);
 }
 
-/* Update Play Hint (Icon and Minimal Text) */
-.play-hint {
-    position: absolute;
-    bottom: 20px; /* Slightly higher from the bottom */
-    left: 50%; /* Center the hint */
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, rgba(255, 30, 70, 0.9), rgba(153, 0, 17, 0.9)); /* Crimson gradient */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 600;
-    backdrop-filter: blur(8px);
-    pointer-events: none;
-    transition: opacity 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 15px rgba(255, 30, 70, 0.5); /* Glow for the hint button */
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Space for an icon if needed */
-}
-
-/* Video ke container ko update karna taaki video properly center ho */
+/* Dynamic Aspect Ratio Container for Vertical/Horizontal Videos */
 .video-container {
     width: 100%;
-    height: 400px;
+    height: 440px; /* Uniform grid frame block height */
     background-color: #020203;
     overflow: hidden;
     position: relative;
@@ -227,41 +202,66 @@ body {
     cursor: pointer;
 }
 
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Blends horizontal and vertical assets nicely without clipping layout integrity */
+    transition: transform 0.5s ease;
+}
+
+.card:hover .video-container video {
+    transform: scale(1.03); /* Cinematic sub-zoom on hover */
+}
+
+/* Modern Glowing Preview Badge */
+.play-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(255, 30, 70, 0.95), rgba(153, 0, 17, 0.95));
+    color: white;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(255, 30, 70, 0.5);
+    white-space: nowrap;
+}
+
+/* Symmetrical Text Alignment Info Box */
 .card-info {
     padding: 24px;
-    background-color: rgba(15, 15, 22, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    flex-grow: 1; /* bache hue saare cards ka text container size match karega */
+    background-color: rgba(12, 12, 18, 0.85);
+    border-top: 1px solid rgba(255, 30, 70, 0.08);
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.card-info {
-    padding: 24px;
-    background-color: rgba(15, 15, 22, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    flex-grow: 1; /* bache hue saare cards ka text container size match karega */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.card-info h3 {
+    font-size: 19px;
+    margin-bottom: 8px;
+    color: #f3f4f6;
+    font-weight: 700;
 }
 
-.card-info {
-    padding: 24px;
-    background-color: rgba(15, 15, 22, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    flex-grow: 1; /* bache hue saare cards ka text container size match karega */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.card-info p {
+    color: #9ca3af;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-/* Dynamic Scroll Animations */
+/* Scroll Fade Animations */
 .fade-in {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .fade-in.visible {
@@ -269,38 +269,39 @@ body {
     transform: translateY(0);
 }
 
-/* Footer */
+/* Footer Section */
 footer {
-    padding: 120px 8% 40px 8%;
+    padding: 100px 8% 40px 8%;
     background: linear-gradient(to top, #020203, #050508);
     text-align: center;
     border-top: 1px solid rgba(255, 30, 70, 0.05);
 }
 
 footer h2 {
-    font-size: 42px;
-    margin-bottom: 20px;
+    font-size: 40px;
+    margin-bottom: 15px;
     background: linear-gradient(to right, #fff, #ff1e46);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 700;
 }
 
 footer p {
     color: #9ca3af;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .social-links {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .social-links a {
     text-decoration: none;
     color: #9ca3af;
-    font-weight: 500;
+    font-weight: 600;
     transition: 0.3s;
 }
 
@@ -310,6 +311,6 @@ footer p {
 }
 
 .copyright {
-    font-size: 14px;
+    font-size: 13px;
     color: #374151 !important;
 }

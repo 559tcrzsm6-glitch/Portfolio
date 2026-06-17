@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satyam | Professional Video Editor</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -41,8 +41,8 @@
                     <div class="play-hint">Hover to preview 🔊</div>
                 </div>
                 <div class="card-info">
-                    <h3>High Retention Edit</h3>
-                    <p>Motion Graphics & Cinematic Cuts</p>
+                    <h3>High-Retention YouTube Edit</h3>
+                    <p>Advanced pacing, custom graphics, and sound design built to keep viewers hooked.</p>
                 </div>
             </div>
 
@@ -51,10 +51,10 @@
                     <video src="c to l.mp4" loop muted playsinline></video>
                     <div class="play-hint">Hover to preview 🔊</div>
                 </div>
-               <div class="card-info">
-    <h3>High-Retention YouTube Edit</h3>
-    <p>Advanced pacing, custom graphics, and sound design built to keep viewers hooked.</p>
-</div> 
+                <div class="card-info">
+                    <h3>Viral Instagram / Shorts Reel</h3>
+                    <p>Fast cuts, kinetic typography, and trending hooks optimized for the algorithm.</p>
+                </div>
             </div>
 
             <div class="card fade-in">
@@ -63,9 +63,9 @@
                     <div class="play-hint">Hover to preview 🔊</div>
                 </div>
                 <div class="card-info">
-    <h3>Viral Instagram / Shorts Reel</h3>
-    <p>Fast cuts, kinetic typography, and trending hooks optimized for the algorithm.</p>
-</div>
+                    <h3>Cinematic Travel & Storytelling</h3>
+                    <p>Premium color grading, seamless speed ramps, and immersive soundscapes.</p>
+                </div>
             </div>
 
             <div class="card fade-in">
@@ -74,9 +74,9 @@
                     <div class="play-hint">Hover to preview 🔊</div>
                 </div>
                 <div class="card-info">
-    <h3>Cinematic Travel & Storytelling</h3>
-    <p>Premium color grading, seamless speed ramps, and immersive soundscapes.</p>
-</div>
+                    <h3>Commercial & Product Promo</h3>
+                    <p>Sleek framing and sound effects designed to drive action and sales.</p>
+                </div>
             </div>
 
         </div>
@@ -86,15 +86,15 @@
         <h2>Ready to dominate the feed? Let's talk.</h2>
         <p>Based in Bettiah, Bihar | Available for Remote Freelance Gigs Globally</p>
         
-        <p style="margin-bottom: 20px; font-weight: 500; color: #ff1e46;">
-            📞 Call/WhatsApp: +91 [8709973773]
+        <p style="margin-bottom: 25px; font-weight: 600; color: #ff1e46; font-size: 18px;">
+            📞 Call/WhatsApp: +91 8709973773
         </p>
 
         <div class="social-links">
-            <a href="[LINKEDIN_URL]" target="_blank">LinkedIn</a>
-            <a href="[https://www.instagram.com/satyam_shrivastwa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==]" target="_blank">Instagram</a>
-            <a href="mailto:[satyamshrivastawa36@gmail.com]">Email Me</a>
-            <a href="https://wa.me/91[8709973773]?text=Hi%20Satyam,%20checked%20your%20portfolio%20and%20want%20to%20discuss%20a%20project!" target="_blank">WhatsApp</a>
+            <a href="https://www.linkedin.com/in/satyam-shrivastwa-5108a5335 " target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/satyam_shrivastwa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
+            <a href="mailto:satyamshrivastawa36@gmail.com">Email Me</a>
+            <a href="https://wa.me/91 8709973773text=Hi%20Satyam,%20checked%20your%20portfolio%20and%20want%20to%20discuss%20a%20project!" target="_blank">WhatsApp</a>
         </div>
         <p class="copyright">© 2026 Satyam. All rights reserved.</p>
     </footer>
@@ -108,13 +108,12 @@
         canvas.height = window.innerHeight;
 
         let particlesArray = [];
-        const numberOfParticles = 60; // Smooth frame rates ke liye balanced number
+        const numberOfParticles = 65;
 
-        // Mouse Tracker for interactive motion
         const mouse = {
             x: null,
             y: null,
-            radius: 150
+            radius: 140
         }
 
         window.addEventListener('mousemove', (e) => {
@@ -127,18 +126,16 @@
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.4 - 0.2; // Slow aesthetic floating
+                this.speedX = Math.random() * 0.4 - 0.2;
                 this.speedY = Math.random() * 0.4 - 0.2;
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Bounce off edges
                 if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
 
-                // Interaction with mouse
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
@@ -150,7 +147,7 @@
                 }
             }
             draw() {
-                ctx.fillStyle = 'rgba(255, 30, 70, 0.4)';
+                ctx.fillStyle = 'rgba(255, 30, 70, 0.35)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -173,7 +170,7 @@
 
                     if (distance < 120) {
                         opacityValue = 1 - (distance/120);
-                        ctx.strokeStyle = `rgba(255, 30, 70, ${opacityValue * 0.15})`;
+                        ctx.strokeStyle = `rgba(255, 30, 70, ${opacityValue * 0.12})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -204,15 +201,14 @@
         init();
         animate();
 
-
-        // 2. HOVER TO PLAY LOGIC
+        // 2. SMART HOVER TO PLAY ENGINE
         const videoContainers = document.querySelectorAll('.video-container');
         videoContainers.forEach(container => {
             const video = container.querySelector('video');
             const hint = container.querySelector('.play-hint');
             
             container.addEventListener('mouseenter', () => {
-                video.play().catch(err => console.log("Auto-play stopped"));
+                video.play().catch(err => console.log("Playback interaction prevent logged"));
                 hint.style.opacity = '0';
             });
             
@@ -234,7 +230,7 @@
             });
         });
 
-        // 3. SCROLL REVEAL ANIMATION
+        // 3. INTERSECTION OBSERVER FOR GLOBAL FADE DEPLOYMENT
         const fadeElements = document.querySelectorAll('.fade-in');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -242,7 +238,7 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.08 });
         fadeElements.forEach(el => observer.observe(el));
     </script>
 </body>
