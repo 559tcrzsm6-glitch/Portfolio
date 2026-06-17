@@ -25,7 +25,7 @@
                 Turning Raw Footage Into <br>
                 <span id="dynamic-hook" class="glow-text">High-Retention Stories</span>
             </h1>
-            <p class="hero-desc">I engineer custom visual systems, behavioral pacing loops, and advanced sound design engineered specifically to sustain viewer retention metrics, accelerate watch time, and optimize algorithmic click-through-rates across competitive social channels.</p>
+            <p class="hero-desc">Transforming raw footage into high-retention visual assets. I blend strategic pacing, dynamic motion design, and tactical audio layering to accelerate watch time and scale your brand's digital footprint across all socials.</p>
             <div class="hero-btns">
                 <a href="#work" class="btn-primary">View Case Studies</a>
                 <a href="#contact" class="btn-secondary">Let's Collaborate</a>
@@ -39,7 +39,7 @@
             
             <div class="card fade-in">
                 <div class="video-container">
-                    <video src="Day 3.1.mp4" loop muted playsinline></video>
+                    <video src="Doc Finall.mp4" loop muted playsinline></video>
                     <div class="play-hint">Hover to preview 🔊</div>
                 </div>
                 <div class="card-info">
@@ -82,26 +82,27 @@
             </div>
 
             <div class="card fade-in">
-    <div class="video-container">
-        <video src="CHAARDIWARIXBITSGOA.mp4" loop muted playsinline></video>
-        <div class="play-hint">Hover to preview 🔊</div>
-    </div>
-    <div class="card-info">
-        <h3>Live Music, Raw Energy.</h3>
-        <p>Captured the absolute madness of the live crowd. Synchronized heavy bass drops with aggressive transitions and high-frequency audio mastering.</p>
-    </div>
-</div>
+                <div class="video-container">
+                    <video src="CHAAR DIWARI X BITS GOA .mp4" loop muted playsinline></video>
+                    <div class="play-hint">Hover to preview 🔊</div>
+                </div>
+                <div class="card-info">
+                    <h3>Live Music, Raw Concert Energy</h3>
+                    <p>Captured the absolute madness of the live crowd. Synchronized heavy bass drops with aggressive transitions, speed ramps, and high-frequency audio mastering.</p>
+                </div>
+            </div>
 
-<div class="card fade-in">
-    <div class="video-container">
-        <video src="project1.mp4" loop muted playsinline></video>
-        <div class="play-hint">Hover to preview 🔊</div>
-    </div>
-    <div class="card-info">
-        <h3>Dynamic Motion Architecture.</h3>
-        <p>Breathing life into vector assets. Engineered smooth keyframe easing, custom 3D spatial tracking, and clean kinetic typography to transform complex brand concepts into high-retention visual loops.</p>
-    </div>
-</div>
+            <div class="card fade-in">
+                <div class="video-container">
+                    <video src="project1 (1).mp4" loop muted playsinline></video>
+                    <div class="play-hint">Hover to preview 🔊</div>
+                </div>
+                <div class="card-info">
+                    <h3>Dynamic Motion Architecture</h3>
+                    <p>Breathing life into vector assets. Engineered smooth keyframe easing, custom 3D spatial tracking, and clean kinetic typography to transform brand identities into loops.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -123,7 +124,7 @@
     </footer>
 
     <script>
-        // 1. DYNAMIC TEXT FLIP ENGINE (Hero Hook)
+        // 1. DYNAMIC TEXT FLIP ENGINE
         const hookElement = document.getElementById('dynamic-hook');
         const phrases = [
             "High-Retention Stories.",
@@ -225,23 +226,26 @@
         init(); animate();
 
 
-        // 3. CINEMATIC VIDEO HOVER CONTROLLER
+        // 3. CINEMATIC VIDEO HOVER CONTROLLER (Fixed Controls Player Bug)
         const videoContainers = document.querySelectorAll('.video-container');
         videoContainers.forEach(container => {
             const video = container.querySelector('video');
             const hint = container.querySelector('.play-hint');
             
             container.addEventListener('mouseenter', () => {
-                video.play().catch(err => console.log("Playback interaction logged"));
-                hint.style.opacity = '0';
+                video.removeAttribute('controls'); 
+                video.play().catch(err => console.log("Playback blocked"));
+                if (hint) hint.style.opacity = '0';
             });
             container.addEventListener('mouseleave', () => {
-                video.pause(); video.currentTime = 0;
-                hint.style.opacity = '1';
+                video.pause(); 
+                video.currentTime = 0;
+                video.removeAttribute('controls');
+                if (hint) hint.style.opacity = '1';
             });
             container.addEventListener('click', () => {
-                if(video.muted) { video.muted = false; video.controls = true; hint.style.display = 'none'; } 
-                else { video.muted = true; video.controls = false; }
+                if(video.muted) { video.muted = false; } 
+                else { video.muted = true; }
             });
         });
 
