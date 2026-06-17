@@ -166,53 +166,59 @@ body {
     gap: 40px;
 }
 
+/* Update Card Styles (Glassmorphism + Neon Glow) */
 .card {
-    background-color: rgba(15, 15, 22, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 15, 22, 0.45); /* More transparent for glass look */
+    border: 1px solid rgba(255, 30, 70, 0.1); /* Subtle neon red border */
     border-radius: 20px;
     overflow: hidden;
-    backdrop-filter: blur(8px);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(25px); /* Strong glass blur */
+    -webkit-backdrop-filter: blur(25px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Strong initial shadow */
+    position: relative;
 }
 
+/* Update Hover Effect (Zoom-in & Red Neon Glow) */
 .card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(255, 30, 70, 0.4);
-    box-shadow: 0 15px 35px rgba(255, 30, 70, 0.15);
+    transform: translateY(-8px) scale(1.02); /* Pop-up and slight zoom */
+    border-color: rgba(255, 30, 70, 0.6); /* Bright neon border on hover */
+    box-shadow: 0 15px 40px rgba(255, 30, 70, 0.25); /* Crimson red glow on hover */
 }
 
-/* Video Container */
+/* Update Play Hint (Icon and Minimal Text) */
+.play-hint {
+    position: absolute;
+    bottom: 20px; /* Slightly higher from the bottom */
+    left: 50%; /* Center the hint */
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(255, 30, 70, 0.9), rgba(153, 0, 17, 0.9)); /* Crimson gradient */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+    transition: opacity 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 30, 70, 0.5); /* Glow for the hint button */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space for an icon if needed */
+}
+
+/* Video ke container ko update karna taaki video properly center ho */
 .video-container {
     width: 100%;
     height: 400px;
-    background-color: #020203;
+    background-color: #020203; /* Deep black video background */
     overflow: hidden;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.play-hint {
-    position: absolute;
-    bottom: 15px;
-    background: rgba(5, 5, 8, 0.85);
-    color: #ff4d6d;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    backdrop-filter: blur(5px);
-    pointer-events: none;
-    transition: opacity 0.3s;
-    border: 1px solid rgba(255, 30, 70, 0.2);
 }
 
 .card-info {
