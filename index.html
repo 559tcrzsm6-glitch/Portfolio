@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satyam | Professional Video Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">SATYAM</div>
+        <ul class="nav-links">
+            <li><a href="#work">My Edits</a></li>
+            <li><a href="#contact" class="btn-nav">Hire Me</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content fade-in">
+            <span class="tagline">Video Editor & Creator 🎬</span>
+            <h1>I craft high-retention stories and engaging video content.</h1>
+            <p>Freelance Video Editor specializing in YouTube videos, cinematic reels, commercial ads, and fast-paced social media content.</p>
+            <div class="hero-btns">
+                <a href="#work" class="btn-primary">Watch My Work</a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="work" class="work-section">
+        <h2 class="fade-in">Selected Video Projects</h2>
+        <div class="grid">
+            
+            <div class="card fade-in">
+                <div class="video-container">
+                    <video src="c to c (2).mp4" loop muted playsinline></video>
+                    <div class="play-hint">Hover to preview 🔊</div>
+                </div>
+                <div class="card-info">
+                    <h3>High Retention Edit</h3>
+                    <p>Motion Graphics & Cinematic Cuts</p>
+                </div>
+            </div>
+
+            <div class="card fade-in">
+                <div class="video-container">
+                    <video src="c to l.mp4" loop muted playsinline></video>
+                    <div class="play-hint">Hover to preview 🔊</div>
+                </div>
+                <div class="card-info">
+                    <h3>Social Media Reel</h3>
+                    <p>Fast Paced Edits & Kinetic Typography</p>
+                </div>
+            </div>
+
+            <div class="card fade-in">
+                <div class="video-container">
+                    <video src="Day 3.1.mp4" loop muted playsinline></video>
+                    <div class="play-hint">Hover to preview 🔊</div>
+                </div>
+                <div class="card-info">
+                    <h3>Client Project / Vlog</h3>
+                    <p>Color Grading & Sound Design</p>
+                </div>
+            </div>
+
+            <div class="card fade-in">
+                <div class="video-container">
+                    <video src="timeline web.mp4" loop muted playsinline></video>
+                    <div class="play-hint">Hover to preview 🔊</div>
+                </div>
+                <div class="card-info">
+                    <h3>Commercial / Promo Ad</h3>
+                    <p>Product Showcase & Seamless Transitions</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Let's build something epic together.</h2>
+        <p>Bettiah, Bihar | Open for Freelance Work</p>
+        
+        <p style="margin-bottom: 20px; font-weight: 500; color: #6366f1;">
+            📞 Call/WhatsApp: +91 8709973773
+        </p>
+
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/YOUR_USERNAME" target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/satyam_shrivastwa?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
+            <a href="satyamshrivastawa36@gmail.com">Email Me</a>
+            <a href="https://wa.me/918709973773?text=Hi%20Satyam,%20I%20want%20to%20hire%20you%20for%20video%20editing" target="_blank">WhatsApp</a>
+        </div>
+        <p class="copyright">© 2026 Satyam. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 1. Hover to Play logic
+        const videoContainers = document.querySelectorAll('.video-container');
+        
+        videoContainers.forEach(container => {
+            const video = container.querySelector('video');
+            const hint = container.querySelector('.play-hint');
+            
+            // Mouse andar aane par play karo
+            container.addEventListener('mouseenter', () => {
+                video.play().catch(error => console.log("Auto-play prevented"));
+                hint.style.opacity = '0';
+            });
+            
+            // Mouse baahar jaane par pause aur reset karo
+            container.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0; // Shuruat se reset
+                hint.style.opacity = '1';
+            });
+
+            // Agar user click kare toh unmute/mute toggle ho jaye ya bada player khule
+            container.addEventListener('click', () => {
+                if(video.muted) {
+                    video.muted = false;
+                    video.controls = true; // Full controls de do click par
+                    hint.style.display = 'none';
+                } else {
+                    video.muted = true;
+                    video.controls = false;
+                }
+            });
+        });
+
+        // 2. Scroll Reveal Animation Logic
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
