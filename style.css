@@ -231,9 +231,39 @@ section { padding: 100px 8%; }
 .sub-resume-section { margin-bottom: 35px; }
 .sub-resume-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #fff; border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding-bottom: 6px; margin-bottom: 15px; }
 
-.resume-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-.resume-skill-item { font-size: 14px; color: #94a3b8; line-height: 1.6; display: flex; gap: 8px; }
-.resume-skill-item::before { content: "▪"; color: #ff1e46; }
+/* 🛠️ FIXED CRITICAL RESUME ALIGNMENT BLOCK GRID ENGINE */
+.resume-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 24px 35px; /* Symmetrical gaps */
+}
+.resume-skill-item { 
+    font-size: 14px; 
+    color: #94a3b8; 
+    line-height: 1.6; 
+    display: flex; 
+    align-items: flex-start; /* Keeps bullet anchored at the top line */
+    gap: 12px; 
+}
+.resume-skill-item::before { 
+    content: "▪"; 
+    color: #ff1e46; 
+    font-size: 12px;
+    margin-top: 2px; /* Precision vertical micro-offset */
+    flex-shrink: 0;
+}
+.resume-skill-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.resume-skill-content strong {
+    color: #fff;
+    font-weight: 700;
+}
+.resume-skill-content span {
+    color: #94a3b8;
+}
 
 .job-block { margin-bottom: 25px; }
 .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
@@ -256,6 +286,11 @@ footer { padding: 100px 8% 40px 8%; background: #020204; border-top: 1px solid r
 .social-stack a:hover { color: #ff1e46; transform: translateX(5px); }
 .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.03); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; font-size: 13px; color: #334155; }
 .text-flip { opacity: 0; transform: translateY(10px); transition: 0.4s; }
+
+/* STRICT HIGH-END EXPORT CONFIG OVERRIDES */
+@media print {
+    body { background-color: #050508 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
 
 /* MOBILE RESPONSIVE MEDIA SYSTEM */
 @media screen and (max-width: 968px) {
