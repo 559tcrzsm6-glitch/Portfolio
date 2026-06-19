@@ -220,12 +220,7 @@
         <h2 class="section-title">Professional Resume</h2>
         <p class="section-subtitle">A synthesis of technical engineering and high-end digital brand strategy</p>
         
-        <!-- AUTOMATED DOWNLOAD TRIGGER CONTROLLER -->
-        <div style="margin-bottom: 30px;">
-            <button onclick="printResume()" style="background: linear-gradient(135deg, #ff1e46, #ff4d6d); border: none; color: #fff; padding: 14px 32px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 14.5px; box-shadow: 0 10px 25px rgba(255, 30, 70, 0.3);">
-                Download Premium PDF Resume 📄
-            </button>
-        </div>
+       
         
         <div class="resume-box" id="resume-document">
             <div class="resume-header">
@@ -491,33 +486,7 @@
             });
         });
 
-        // 5. PREMIUM DARK-GRADIENT FORCED EXPORT ENGINE FOR PDF DOWNLOADS
-        function printResume() {
-            var printContents = document.getElementById('resume-document').innerHTML;
-            var originalContents = document.body.innerHTML;
-            
-            document.body.innerHTML = `
-                <div style="
-                    color: #f3f4f6; 
-                    background: #050508; 
-                    background-image: radial-gradient(at 0% 0%, rgba(255, 30, 70, 0.08) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 30, 70, 0.03) 0px, transparent 50%);
-                    padding: 50px; 
-                    font-family: 'Plus Jakarta Sans', sans-serif; 
-                    max-width: 850px; 
-                    margin: 0 auto;
-                    border: 1px solid rgba(255, 255, 255, 0.04);
-                    border-radius: 24px;
-                    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-                ">
-                    ${printContents}
-                </div>
-            `;
-            
-            window.print();
-            
-            document.body.innerHTML = originalContents;
-            window.location.reload(); 
-        }
+        
     </script>
 </body>
 </html>
